@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portofolio Saya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg1: #ffe3ee; --bg2: #ffc9dd; --card: rgba(255,255,255,.72);
+    --text: #5b2a42; --muted: #a0607f; --primary: #e75a97; --primary-dark: #c93d7c;
+    --soft: #ffd6e7; --blob1: #ff9ac6; --blob2: #ffb8d9; --accent2: #ff8fc0; --border: rgba(231,90,151,.25); --shadow: 0 10px 30px rgba(231,90,151,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg1: #2b1220; --bg2: #3d1830; --card: rgba(70,28,52,.7);
+      --text: #ffe6f1; --muted: #ffb3d1; --primary: #ff7eb6; --primary-dark: #ff5fa5;
+      --soft: #5a2442; --border: rgba(255,126,182,.3); --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  /* Tema pink tiap halaman */
+  body[data-theme="skills"] {
+    --bg1: #ffd9ec; --bg2: #ff9fd0; --text: #5a1440; --muted: #a3487c;
+    --primary: #f0369a; --primary-dark: #c4177a; --soft: #ffc2e2;
+    --blob1: #ff6fb8; --blob2: #ffa6d6; --accent2: #ff6fb8;
+    --border: rgba(240,54,154,.28); --shadow: 0 10px 30px rgba(240,54,154,.2);
+  }
+  body[data-theme="achievement"] {
+    --bg1: #ffe6e1; --bg2: #ffc4c0; --text: #5e2b30; --muted: #a8625f;
+    --primary: #ee6a78; --primary-dark: #c94557; --soft: #ffd5d2;
+    --blob1: #ff9aa2; --blob2: #ffc2a8; --accent2: #ff9aa2;
+    --border: rgba(238,106,120,.28); --shadow: 0 10px 30px rgba(238,106,120,.2);
+  }
+  body[data-theme="contact"] {
+    --bg1: #f6e1f2; --bg2: #e8c0e4; --text: #4f2250; --muted: #8f5a8c;
+    --primary: #c860b4; --primary-dark: #9f3d8c; --soft: #f0d0ec;
+    --blob1: #d98bd0; --blob2: #f0b6e6; --accent2: #dc86cc;
+    --border: rgba(200,96,180,.28); --shadow: 0 10px 30px rgba(200,96,180,.2);
+  }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="skills"] {
+      --bg1: #33102a; --bg2: #4a1038; --text: #ffe3f2; --muted: #ff9fd2;
+      --primary: #ff5fb5; --primary-dark: #ff7cc4; --soft: #5e1d47;
+      --blob1: #b3237c; --blob2: #8a1a66; --accent2: #ff7cc4; --border: rgba(255,95,181,.3);
+    }
+    body[data-theme="achievement"] {
+      --bg1: #35161a; --bg2: #4a1f24; --text: #ffe8e6; --muted: #ffb3ad;
+      --primary: #ff8a95; --primary-dark: #ff9aa4; --soft: #5e2830;
+      --blob1: #b0404c; --blob2: #8a3a30; --accent2: #ffa3ab; --border: rgba(255,138,149,.3);
+    }
+    body[data-theme="contact"] {
+      --bg1: #2a1530; --bg2: #3d1d45; --text: #f8e6f6; --muted: #d9a6d3;
+      --primary: #e585d6; --primary-dark: #ee9de1; --soft: #532a5c;
+      --blob1: #8a3a86; --blob2: #6a2a7a; --accent2: #f0a0e4; --border: rgba(229,133,214,.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    color: var(--text); line-height: 1.7;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2)) fixed;
+    position: relative; overflow-x: hidden;
+    transition: color .4s;
+  }
+  body::before, body::after {
+    content: ""; position: fixed; border-radius: 50%; z-index: -1; filter: blur(60px); opacity: .55;
+  }
+  body::before { width: 320px; height: 320px; background: var(--blob1); top: -80px; left: -80px; }
+  body::after { width: 380px; height: 380px; background: var(--blob2); bottom: -120px; right: -100px; }
+  header { text-align: center; padding: 56px 16px 4px; }
+  header h1 {
+    margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-style: normal;
+    font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1.15; letter-spacing: 1px;
+    color: var(--primary-dark);
+  }
+  header .tagline {
+    margin: 12px auto 0; display: flex; align-items: center; justify-content: center; gap: 16px;
+    color: var(--muted); letter-spacing: 4px; text-transform: uppercase; font-size: .75rem; font-weight: 500;
+  }
+  header .tagline span { width: 36px; height: 1px; background: var(--primary); opacity: .6; }
+  nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 22px 16px; }
+  nav button {
+    background: var(--card); color: var(--primary-dark); border: 1.5px solid var(--border);
+    padding: 10px 22px; border-radius: 999px; font: 500 .95rem "Poppins", sans-serif;
+    cursor: pointer; transition: all .25s; backdrop-filter: blur(8px); box-shadow: var(--shadow);
+  }
+  nav button:hover { transform: translateY(-3px); background: var(--soft); }
+  nav button.active {
+    background: linear-gradient(135deg, var(--accent2), var(--primary)); color: #fff; border-color: transparent;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 4px 16px 56px; }
+  section {
+    display: none; background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 28px; box-shadow: var(--shadow);
+    backdrop-filter: blur(10px); animation: fade .4s ease;
+  }
+  section.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  h2 { margin-top: 0; font-family: "Playfair Display", Georgia, serif; font-size: 1.7rem; color: var(--primary-dark); }
+  h2::after { content: ""; display: block; width: 56px; height: 3px; margin-top: 6px; border-radius: 3px; background: var(--primary); }
+  h3 { color: var(--primary-dark); }
+  .info { display: grid; grid-template-columns: 130px 1fr; gap: 8px 12px; margin: 16px 0; }
+  .info dt { font-weight: 600; color: var(--primary-dark); }
+  .info dd { margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .tags span {
+    background: var(--soft); color: var(--primary-dark); border: 1px solid var(--border);
+    padding: 4px 16px; border-radius: 999px; font-size: .88rem; font-weight: 500;
+  }
+  .item { border-left: 4px solid var(--primary); background: var(--soft); border-radius: 0 14px 14px 0; padding: 8px 16px; margin: 14px 0; }
+  .item h3 { margin: 0; font-size: 1.05rem; }
+  .item small { color: var(--muted); }
+  .item a, .contact a { color: var(--primary-dark); }
+  .contact a {
+    display: block; padding: 11px 16px; margin: 10px 0; border: 1px solid var(--border);
+    border-radius: 14px; text-decoration: none; font-weight: 500; background: var(--soft); transition: all .25s;
+  }
+  .contact a:hover { background: var(--primary); color: #fff; transform: translateX(4px); }
+  @media (max-width: 480px) {
+    .info { grid-template-columns: 1fr; } .info dt { margin-top: 8px; }
+  }
+</style>
+</head>
+<body data-theme="about">
+
+<header>
+  <h1>Silva Alkhiqmatul Isma</h1>
+  <p class="tagline"><span></span>Portofolio<span></span></p>
+</header>
+
+<nav>
+  <button class="active" data-target="about">About Me</button>
+  <button data-target="skills">What I Can Do</button>
+  <button data-target="achievement">Achievement</button>
+  <button data-target="contact">Contact</button>
+</nav>
+
+<main>
+  <!-- ABOUT ME -->
+  <section id="about" class="active">
+    <h2>About Me</h2>
+    <p>Saya merupakan mahasiswa Pendidikan Teknologi Informasi Universitas Negeri Surabaya yang memiliki minat dalam bidang pendidikan, teknologi pembelajaran, dan pengembangan media pembelajaran digital. Saya memiliki ketertarikan dalam proses belajar mengajar serta pemanfaatan teknologi untuk menciptakan pembelajaran yang kreatif, inovatif, dan interaktif. Memiliki kemampuan komunikasi, kerja sama tim, adaptasi, dan pemecahan masalah yang baik. Saya berkomitmen untuk terus mengembangkan kompetensi pedagogik dan keterampilan teknologi guna menjadi pendidik yang profesional, kompeten, dan mampu beradaptasi dengan perkembangan teknologi di dunia pendidikan.</p>
+ <div style="text-align: center;">
+    <img src="silva.jpeg"
+         alt="Foto Silva"
+         width="150"
+         height="150"
+         style="object-fit: cover; border-radius: 15px;">
+</div>
+    <dl class="info">
+      <dt>Nama</dt><dd>Silva Alkhiqmatul Isma</dd>
+      <dt>NIM</dt><dd>26050974075</dd>
+      <dt>Prodi</dt><dd>Pendidikan Teknologi Informasi</dd>
+      <dt>Pendidikan</dt><dd>Universitas Negeri Surabaya</dd>
+      <dt>Aktivitas</dt><dd>Belajar Coding, Belajar Algoritma dan Pemrograman</dd>
+    </dl>
+  </section>
+
+  <!-- WHAT I CAN DO -->
+  <section id="skills">
+    <h2>What I Can Do</h2>
+    <p>Memiliki kemampuan komunikasi yang baik dalam menyampaikan informasi secara jelas dan efektif, serta kemampuan kepemimpinan dalam mengoordinasikan anggota tim dan membagi tugas. Mampu bekerja sama dalam tim, mengelola waktu dengan baik, serta menyusun perencanaan dan mengoordinasikan pelaksanaan acara. Memiliki keterampilan administrasi, seperti menyusun notulen, mengelola dokumen, dan membuat proposal kegiatan. Selain itu, memiliki kreativitas dalam dalam memanfaatkan teknologi digital.</p>
+    <h3>Skill</h3>
+    <div class="tags"><span>Python</span><span>MySQL</span></div>
+    <h3>Tools</h3>
+    <div class="tags"><span>VS Code</span><span>GitHub</span><span>phpMyAdmin</span><span>Anaconda</span></div>
+  </section>
+
+  <!-- ACHIEVEMENT -->
+  <section id="achievement">
+    <h2>Achievement</h2>
+    <div class="item">
+      <h3>Lulus Speaking 1A Program</h3>
+      <small>2026 &bull; ACCESS English School</small>
+      <p>Meningkatkan kemampuan berbicara bahasa Inggris dan komunikasi lisan. <a href="https://drive.google.com/file/d/14u0B8SxNJ2QsfSJOGFIitDrxQkooV2Wk/view?usp=drivesdk">Lihat bukti</a></p>
+    </div>
+    <div class="item">
+      <h3>Nama Pencapaian 2</h3>
+      <small>2025 &bull; Penyelenggara / Lembaga</small>
+      <p>Deskripsi singkat pencapaian. <a href="#">Lihat bukti</a></p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Silakan hubungi saya melalui:</p>
+    <a href="mailto:silvaaaaai07@gmail.com">Email: silvaaaaai07@gmail.com</a>
+    <a href="https://github.com/silvaaaaai" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/https://www.linkedin.com/in/silva-alkhiqmatul-isma-b30850442?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">Linkedin</a>
+    <a href="https://drive.google.com/file/d/1aws-JnXk5_y-I8AIyWtp9C0u2D-E4AcE/view?usp=drive_link" target="_blank">CV</a>
+  </section>
+</main>
+
+<script>
+  const buttons = document.querySelectorAll("nav button");
+  const sections = document.querySelectorAll("section");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      sections.forEach(s => s.classList.remove("active"));
+      btn.classList.add("active");
+      document.body.dataset.theme = btn.dataset.target;
+      document.getElementById(btn.dataset.target).classList.add("active");
+    });
+  });
+</script>
+</body>
+</html>
